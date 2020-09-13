@@ -14,7 +14,7 @@ Dim big_ticker As String
 Dim small_ticker As String
 Dim total_ticker As String
 
-'-----------------
+'--------worksheet loop---------
 Dim i As Integer
 Dim ws_num As Integer
 
@@ -24,13 +24,14 @@ ws_num = ThisWorkbook.Worksheets.Count
 
 For i = 1 To ws_num
     ThisWorkbook.Worksheets(i).Activate
-'-----------------
+'--------worksheet loop---------
 
                 row = Cells(Rows.Count, 1).End(xlUp).row
 
                 tablerow = 1
 
-                Range("I1,P1").Value = "Ticker"
+
+                Range("I1,P1").Value = "Ticker" 'print all the required headers
                 Range("J1").Value = "Yearly Change"
                 Range("K1").Value = "Percentage Change"
                 Range("L1").Value = "Total Stock Volumne"
@@ -78,30 +79,30 @@ For i = 1 To ws_num
                 small = Range("k2")
                 total = Range("L2")
 
-                For g = 2 To tablerow
+                For g = 2 To tablerow 'sort the max %, max -% and max totalwith ticker name
                     If Cells(g + 1, 11) > big Then big = Cells(g + 1, 11): big_ticker = Cells(g + 1, 9)
                     If Cells(g + 1, 11) < small Then small = Cells(g + 1, 11): small_ticker = Cells(g + 1, 9)
                     If Cells(g + 1, 12) > total Then total = Cells(g + 1, 12): total_ticker = Cells(g + 1, 9)
                 Next g
 
-                Range("P2") = big_ticker
+                Range("P2") = big_ticker 'print values to the cell
                 Range("p3") = small_ticker
                 Range("P4") = total_ticker
                 Range("Q2") = big
                 Range("Q3") = small
                 Range("Q4") = total
 
-                Range("K:K").NumberFormat = "0.00%"
+                Range("K:K").NumberFormat = "0.00%" 'format as Percentage for these cells
                 Range("Q2,Q3").NumberFormat = "0.00%"
 
 
 
- '-------------
+ '--------worksheet loop---------
 Next
 
 
 starting_ws.Activate
-'-------------
+'--------worksheet loop---------
 
 End Sub
 
